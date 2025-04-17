@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/.well-known/appspecific/com.tesla.3p.public-key.pem",
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "application/x-pem-file"
+      }
+    }
+  ]
+} 

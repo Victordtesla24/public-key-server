@@ -1,0 +1,14 @@
+{
+  "name": "public-key-server",
+  "version": "1.0.0",
+  "description": "Serves the Tesla application public key statically.",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "tesla",
+    "public-key"
+  ],
+  "author": "",
+  "license": "ISC"
+}
