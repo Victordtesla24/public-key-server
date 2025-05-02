@@ -1,8 +1,11 @@
+// src/index.ts  (FIXED)
+
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import dotenv from 'dotenv';
 import path from 'path';
-import { getPublicKey } from './services/keyService';
+import getPublicKey from './services/keyService';  // default import to match export default
 
+// Load environment variables, if a .env file is present
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const PUBLIC_KEY_PATH =
@@ -12,6 +15,7 @@ const WELL_KNOWN_PATH =
   process.env.WELL_KNOWN_PATH ??
   '/.well-known/appspecific/com.tesla.3p.public-key.pem';
 
+// Attempt to load the PEM; fallback to empty string on failure
 const publicKeyPem = getPublicKey(PUBLIC_KEY_PATH) ?? '';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
