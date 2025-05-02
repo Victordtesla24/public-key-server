@@ -5,9 +5,11 @@ import { getPublicKey } from './services/keyService';
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-const PUBLIC_KEY_PATH = process.env.PUBLIC_KEY_PATH ??
+const PUBLIC_KEY_PATH =
+  process.env.PUBLIC_KEY_PATH ??
   'public/.well-known/appspecific/com.tesla.3p.public-key.pem';
-const WELL_KNOWN_PATH = process.env.WELL_KNOWN_PATH ??
+const WELL_KNOWN_PATH =
+  process.env.WELL_KNOWN_PATH ??
   '/.well-known/appspecific/com.tesla.3p.public-key.pem';
 
 const publicKeyPem = getPublicKey(PUBLIC_KEY_PATH) ?? '';
@@ -16,6 +18,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
 
   if (req.method === 'GET' && req.url === WELL_KNOWN_PATH) {
+    console.log(`Serving public key from ${PUBLIC_KEY_PATH}`);
     res.setHeader('Content-Type', 'application/x-pem-file');
     return res.status(200).send(publicKeyPem);
   }
